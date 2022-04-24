@@ -1,6 +1,6 @@
 # Deploying a Tech Challenge App to GCP
 
-These files are going to deploy a Servian Tech Challenge App to GCP using instance groups and Cloud SQL The details of the database connection going to put into a secret and grant the service account associated with the instance group access to read the DB connection info. The instance group will install the requirements to run the application and store the connection information in environment variables.
+This repo is going to deploy a Servian Tech Challenge App to GCP using instance groups and Cloud SQL. The details of the database connection going to put into a secret and grant the service account associated with the instance group access to read the DB connection info. The start-up script will install the requirements to run the application, fetch the app from git repo and store the db secretes (`VTT_<conf value>`) as environment variables to feed the application.
 
 ## High Level Design:
 ![topology.png](topology.png)
@@ -33,7 +33,7 @@ terraform apply -auto-approve
 terraform destroy  -auto-approve
 ```
 ## Application Test
-After two minutes of successful deployment, Run gcloud command to get the public IP address assigned to frontend application(nameed ad serv-address):
+After two minutes of successful deployment, Run gcloud command to get the public IP address assigned to frontend application (named as a serv-address):
 
 ```bash
 gcloud compute addresses list --global
