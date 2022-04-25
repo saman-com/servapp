@@ -48,5 +48,5 @@ Since enabling the APIs and Could SQL instance can take a while, I think it make
 
 Since The destruction of resources may going to fail the first time. The script can attempt two destructions, separated by three minutes, before it finally gives up and reports an error.
 
-### Cloud Run
-It is cost effective to run this kind of application in google Cloud Run. That will significantly reduce the project running costs.
+### APP Engin
+It is cost effective to run this kind of application in google APP Engin. That will significantly reduce the maintenace and project running costs.
