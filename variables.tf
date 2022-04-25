@@ -1,13 +1,11 @@
 variable "billing_account" {
   type        = string
   description = "Billing account"
-  default     = "01A9EE-F11DB3-936FF0"
 }
 
 variable "org_id" {
   type        = string
   description = "Organization ID"
-  default     = "342395548897"
 }
 variable "region" {
   type        = string
