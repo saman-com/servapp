@@ -32,6 +32,7 @@ terraform apply -auto-approve
 ```bash
 terraform destroy  -auto-approve
 ```
+
 ## Application Test
 After two minutes of successful deployment, use the load-balancer-ip from the outputs. Open browser and browse the `load-balancer-ip:80`
 
