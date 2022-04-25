@@ -6,14 +6,14 @@ This repo is going to deploy a Servian Tech Challenge App to GCP using instance 
 ![topology.png](topology.png)
 
 ## How to Deploy:
-Get the Billing account ID and organizations ID and export the as environment variable:
+Get the Billing account ID and organizations ID and export them as environment variable:
 
 ```bash
 export TF_VAR_billing_account=$(gcloud beta billing accounts list --format=json | jq .[0].name -r | cut -d'/' -f2)
 export TF_VAR_org_id=$(gcloud organizations list --format=json | jq .[0].name -r | cut -d'/' -f2)
 ```
 
-Once you have all your variable values set, standard Terraform workflow applies. You will need to authenticate to Google Cloud using the `gcloud` CLI or with service account credentials. If you want to use your `gcloud` CLI creds, select the configuration you would like to use and then run the following:
+Once you have all your variable values set, standard Terraform workflow applies. You will need to authenticate to Google Cloud using the `gcloud` CLI or with service account credentials. If you want to use your `gcloud` CLI credentials, select the configuration you would like to use and then run the following:
 
 ### GCP login:
 
@@ -33,7 +33,7 @@ terraform apply -auto-approve
 terraform destroy  -auto-approve
 ```
 ## Application Test
-After two minutes of successful deployment, use the load-balancer-ip from output. Open browser and browse the `load-balancer-ip:80`
+After two minutes of successful deployment, use the load-balancer-ip from the outputs. Open browser and browse the `load-balancer-ip:80`
 
 ## Challenges
 One of the problems here is the time it takes for a Google Cloud API and Could SQL instance to be enabled. This may interrupt the applying process and requires to re-run the `terraform apply`. There's also some trouble on the destroy where the instance group might report as being deleted, but the instances themselves are not fully gone. In those cases, the destroy of the subnet will fail since the instances still have NICs on the subnet. Again, this may interrupt the destruction process and requires to re-run the `terraform destroy`.
@@ -47,3 +47,6 @@ Since enabling the APIs and Could SQL instance can take a while, I think it make
 ### Deployment destruction
 
 Since The destruction of resources may going to fail the first time. The script can attempt two destructions, separated by three minutes, before it finally gives up and reports an error.
+
+### Could Run
+It is cost effective to run this kind of application in google Cloud Run. That will significantly reduce the project running costs.
