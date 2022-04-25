@@ -1,4 +1,4 @@
-# Deploying a Tech Challenge App to GCP
+# Deploying a Servian Tech Challenge App to GCP
 
 This repo is going to deploy a Servian Tech Challenge App to GCP using instance groups and Cloud SQL. The details of the database connection going to put into a secret and grant the service account associated with the instance group access to read the DB connection info. The start-up script will install the requirements to run the application, fetch the app from git repo and store the db secretes (`VTT_<conf value>`) as environment variables to feed the application.
 
@@ -15,7 +15,7 @@ export TF_VAR_org_id=$(gcloud organizations list --format=json | jq .[0].name -r
 
 Once you have all your variable values set, standard Terraform workflow applies. You will need to authenticate to Google Cloud using the `gcloud` CLI or with service account credentials. If you want to use your `gcloud` CLI credentials, select the configuration you would like to use and then run the following:
 
-### GCP login:
+### GCP Login:
 
 ```bash
 gcloud auth application-default login
@@ -44,7 +44,7 @@ One of the problems here is the time it takes for a Google Cloud API and Could S
 
 Since enabling the APIs and Could SQL instance can take a while, I think it makes sense to have separated Terraform modules for enabling APIs, DB creation instances and have script run the project deployment first and wait three minutes if changes are made. That should be enough for when a new project is created, or a new API is enabled. When there are no changes needed for the project, the pipeline can jump ahead to deploying or updating the infrastructure.
 
-### Deployment destruction
+### Deployment Destruction
 
 Since The destruction of resources may going to fail the first time. The script can attempt two destructions, separated by three minutes, before it finally gives up and reports an error.
 
