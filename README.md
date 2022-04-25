@@ -33,13 +33,7 @@ terraform apply -auto-approve
 terraform destroy  -auto-approve
 ```
 ## Application Test
-After two minutes of successful deployment, Run gcloud command to get the public IP address assigned to frontend application (named as a serv-address):
-
-```bash
-gcloud compute addresses list --global
-```
-
-Open browser and browse the `public_IP:80`
+After two minutes of successful deployment, use the load-balancer-ip from output. Open browser and browse the `load-balancer-ip:80`
 
 ## Challenges
 One of the problems here is the time it takes for a Google Cloud API and Could SQL instance to be enabled. This may interrupt the applying process and requires to re-run the `terraform apply`. There's also some trouble on the destroy where the instance group might report as being deleted, but the instances themselves are not fully gone. In those cases, the destroy of the subnet will fail since the instances still have NICs on the subnet. Again, this may interrupt the destruction process and requires to re-run the `terraform destroy`.

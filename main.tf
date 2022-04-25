@@ -334,3 +334,8 @@ module "lb-http" {
     }
   }
 }
+
+# Output load balancer IP Address
+output "load-balancer-ip" {
+  value = module.lb-http.external_ip
+}
